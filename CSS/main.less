@@ -1,0 +1,231 @@
+@font-face {
+  font-family: Direct;
+  src: url('https://cdn1.tu-tu.ru/fonts/direct/patch4/ALSDirect-Regular.woff2?v=1') format('woff2'), url('https://cdn1.tu-tu.ru/fonts/direct/patch4/ALSDirect-Regular.woff?v=1') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Direct;
+  src: url('https://cdn1.tu-tu.ru/fonts/direct/patch1/ALSDirect-Italic.woff2') format('woff2'), url('https://cdn1.tu-tu.ru/fonts/direct/patch1/ALSDirect-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: Direct;
+  src: url('https://cdn1.tu-tu.ru/fonts/direct/patch4/ALSDirect-Bold.woff2?v=1') format('woff2'), url('https://cdn1.tu-tu.ru/fonts/direct/patch4/ALSDirect-Bold.woff?v=1') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Direct;
+  src: url('https://cdn1.tu-tu.ru/fonts/direct/patch1/ALSDirect-BoldItalic.woff2') format('woff2'), url('https://cdn1.tu-tu.ru/fonts/direct/patch1/ALSDirect-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/*** Переменные ***/
+
+@content-width: 740px;
+
+@font-h: Direct, Helvetica, Arial, sans-serif;
+@font-a: PT Serif, Georgia, "Times New Roman", Times, serif;
+@font-s: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+@p-desctop: 21px;
+@p-tablet: 19px;
+@p-mobile: 17px;
+
+body { font: @p-mobile @font-a; }
+@media (min-width: 500px) { body { font: @p-tablet @font-a; }}
+@media (min-width: 680px) { body { font: @p-desctop @font-a; }}
+
+@h1: 600 1.953em;
+@h2: 600 1.563em;
+@h3: 600 1.25em;
+@lead: italic 1.25em;
+@sup: 0.8em;
+
+
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property. The "symbol *" part is to solve Firefox SVG sprite bug */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+}
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+/* remove default dot (•) sign */
+::marker {
+  content: initial;
+}
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+/* —————————————————————— Wrapper —————————————————————— */
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+section .content {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: @content-width;
+  margin: 40px 16px 0 16px;
+}
+
+/* —————————————————————— Fonts —————————————————————— */
+
+p {
+  font: @font-a;
+  line-height: 145%;
+  margin-bottom: 0.2em;
+}
+
+h1 {
+  font: @h1 @font-h;
+  line-height: 120%;
+  margin-bottom: 0.3em;
+}
+
+h2 {
+  font: @h2 @font-h;
+  line-height: 120%;
+  margin-top: 24px;
+  margin-bottom: 0.2em;
+}
+
+h3 {
+  font: @h3 @font-h;
+  line-height: 120%;
+  margin-top: 0.8em;
+  margin-bottom: 0.2em;
+}
+
+.lead {
+  font: @lead @font-a;
+  line-height: 130%;
+}
+
+.sup {
+  font: @sup @font-s;
+  line-height: 130%;
+}
+
+  figcaption {
+    color: hsla(220, 11%, 55%, 1); 
+    margin-top: 0.2em;
+  }
+
+/* —————————————————————— Media —————————————————————— */
+
+figure {
+  margin-bottom: 16px;
+}
+
+figure .media {
+  border-radius: 8px;
+}
+
+/* —————————————————————— Tags & links —————————————————————— */
+
+a {
+  color: #0073FF;
+}
+
+a:hover {
+  color: #FF4169;
+}
+
+.tags-list{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px 0px 20px;
+  gap: 4px;
+}
+
+.tag-link {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 4px 10px 8px;
+  background: hsla(213, 100%, 50%, 0.1);
+  border-radius: 8px;
+}
+
+  .tag-link:hover {
+    background: rgba(255, 65, 105, 0.1);
+  }
